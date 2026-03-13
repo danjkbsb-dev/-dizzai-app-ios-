@@ -2,7 +2,7 @@ name: Build and Release
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
@@ -11,27 +11,30 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
 
+      - name: Build project
+        run: npm run build
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.0-<LaTex>${{ github.run_number }}
-          name: DizzAí iOS v1.0.0 Build $</LaTex>{{ github.run_number }}
+          tag_name: v1.0.${{ github.run_number }}
+          name: DizzAí iOS Build ${{ github.run_number }}
           body: |
-            🚀 DizzAí iOS - Build <LaTex>${{ github.run_number }}
-            
+            🚀 DizzAí iOS - Build ${{ github.run_number }}
+
             App pronto para publicar na App Store!
-            
-            Build Number: $</LaTex>{{ github.run_number }}
+
+            Build Number: ${{ github.run_number }}
             Commit: ${{ github.sha }}
           draft: false
           prerelease: false
