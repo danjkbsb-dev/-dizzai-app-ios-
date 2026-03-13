@@ -1,25 +1,10 @@
 {
-  "name": "dizzai-app-ios",
+  "name": "dizzai-app",
   "version": "1.0.0",
-  "description": "App iOS do DizzAí! - Saiba como está o lugar AGORA",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "test": "jest"
+    "build": "vite build"
   },
-  "dependencies": {
-    "expo": "^51.0.0",
-    "expo-router": "^3.0.0",
-    "react": "^18.2.0",
-    "react-native": "^0.74.0",
-    "react-native-maps": "^1.10.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-native": "^0.74.0",
-    "typescript": "^5.3.0"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
