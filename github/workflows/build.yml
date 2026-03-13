@@ -1,8 +1,8 @@
-name: Build and Release
+name: Build and Release Expo App
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
