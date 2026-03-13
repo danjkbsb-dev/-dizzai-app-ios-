@@ -1,15 +1,13 @@
-name: Build and Release Expo App
+name: Build and Release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      NODE_OPTIONS: "--max-old-space-size=4096"
 
     steps:
       - name: Checkout repository
@@ -23,32 +21,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Expo CLI
-        run: npm install -g expo-cli
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.0-<LaTex>${{ github.run_number }}
           name: DizzAí iOS v1.0.0 Build $</LaTex>{{ github.run_number }}
           body: |
-            🚀 DizzAí iOS - App Inovador de Informação em Tempo Real
+            🚀 DizzAí iOS - Build <LaTex>${{ github.run_number }}
             
-            Build automático criado com sucesso!
+            App pronto para publicar na App Store!
             
-            ## ✨ Funcionalidades:
-            - 🗺️ Mapa interativo
-            - 📊 Status em tempo real
-            - 📢 Reports da comunidade
-            - 📰 Feed de atividades
-            - 🚨 Alertas inteligentes
-            - ❤️ Favoritos
-            - 📝 Histórico
-            - 🏆 Ranking
-            - 💬 Chat por lugar
-            - 📱 Compartilhamento social
-            
-            Build Number: <LaTex>${{ github.run_number }}
-            Commit: $</LaTex>{{ github.sha }}
+            Build Number: $</LaTex>{{ github.run_number }}
+            Commit: ${{ github.sha }}
           draft: false
           prerelease: false
